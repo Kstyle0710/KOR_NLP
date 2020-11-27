@@ -14,7 +14,7 @@ targets =[]
 
 results = []
 
-stop_word = "전 난 일 걸 뭐 줄 만 건 분 개 끝 잼 이거 번 중 듯 때 게 내 말 나 수 거 점 것 등 측 의"
+stop_word = "전 난 일 걸 뭐 줄 만 건 분 개 끝 잼 이거 번 중 듯 때 게 내 말 나 수 거 점 것 등 측 의 급 후 간 단 시 곳"
 stop_word = stop_word.split(' ')
 # print(stop_word)
 
@@ -35,5 +35,5 @@ result_df = pd.DataFrame(summary)
 result_df = result_df.T
 print(result_df.head(20))
 
-result_df.to_excel("./result/ko_nlp_1125(2).xlsx", encoding='utf-8-sig')
+result_df.to_excel("./result/ko_nlp_1126(3).xlsx", encoding='utf-8-sig')
 

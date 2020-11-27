@@ -6,26 +6,31 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
-df = pd.read_excel('./result/ko_nlp_1125(2).xlsx')
+df = pd.read_excel('./result/ko_nlp_1124.xlsx')
 
-target = df['target']
-print(type(target))
+target = df['형태소']
 
-total = []
-
-# # print(len(target))
-#
-for i in target:
-    a = i.strip('][').split(',')
-    total = total + a
-print(total)
+# print(target)
+# print(type(target))
 
 
-# wc = WordCloud(background_color = 'white', font_path='./font/NanumGothic.ttf')
-# wc.generate_from_frequencies(total)
-#
-# figure = plt.figure(figsize = (12, 12))
-# ax = figure.add_subplot(1, 1, 1)
-# ax.axis('off')
-# ax.imshow(wc)
-# plt.show()
+total =""
+
+for group in target:
+    group = group.strip("][").split(",")
+
+    for word in group:
+        word = word.strip("'").strip(" '")
+        total += " ".join(word)+ " "
+
+# print(type(total))
+# print(total)
+
+wc = WordCloud(background_color = 'white', font_path='./font/NanumGothic.ttf')
+wc.generate(total)
+
+figure = plt.figure(figsize = (12, 12))
+ax = figure.add_subplot(1, 1, 1)
+ax.axis('off')
+ax.imshow(wc)
+plt.show()
