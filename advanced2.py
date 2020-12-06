@@ -35,5 +35,5 @@ result_df = pd.DataFrame(summary)
 result_df = result_df.T
 print(result_df.head(20))
 
-result_df.to_excel("./result/ko_nlp_1126(3).xlsx", encoding='utf-8-sig')
+result_df.to_excel("./result/ko_nlp_1206.xlsx", encoding='utf-8-sig')
 
