@@ -1,7 +1,5 @@
-import MeCab
 import pandas as pd
 from tqdm import tqdm
-import time
 from konlpy.tag import Mecab
 mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
 

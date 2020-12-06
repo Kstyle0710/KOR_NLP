@@ -1,6 +1,10 @@
-a = [1,2,3]
-b = ['가', '나']
+a = "abd cdf ede kdof diknd"
+print(type(a))
 
+b = [x for x in a.split(" ")[:-1]]
+print(b)
+print(type(b))
 
+k = "my home"
 
-print(b[0])
+print(f"제가 있는 장소는 {k}")
