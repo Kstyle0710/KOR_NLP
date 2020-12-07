@@ -19,7 +19,7 @@ stop_word = stop_word.split(' ')
 # print(stop_word)
 
 
-##########  문제 있음
+##########
 for sentence in tqdm(target):
     result = []
     for noun in mecab.nouns(sentence):
