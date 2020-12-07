@@ -6,11 +6,22 @@ Keyword Analysis
 
 
 '''
-## 불용어 제거
+
 import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+plt.style.use('seaborn-white')
 from tqdm import tqdm
 from konlpy.tag import Mecab
 mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
+
+
+## 폰트 설정
+import matplotlib.font_manager as fm
+fontpath = './font/NanumGothic.ttf'
+font = fm.FontProperties(fname=fontpath, size=10)
+plt.rc('font', family="NanumGothic")
+mpl.font_manager._rebuild()
 
 
 df = pd.read_excel('./data/data1.xlsx')
@@ -19,7 +30,7 @@ target = df["작업행동"]
 targets =[]
 results = []
 
-stop_word = "전 난 일 걸 뭐 줄 만 건 분 개 끝 잼 이거 번 중 듯 때 게 내 말 나 수 거 점 것 등 측 의 급 후 간 단 시 곳"
+stop_word = "전 난 일 걸 뭐 줄 만 건 작업 분 개 끝 잼 이거 동 번 중 듯 차 때 게 내 말 나 수 거 점 것 등 측 의 급 후 간 단 시 곳"
 stop_word = stop_word.split(' ')
 
 ##########
@@ -33,8 +44,41 @@ for sentence in tqdm(target):
 from collections import Counter
 
 nouns_counter = Counter(results)
-top_words = dict(nouns_counter.most_common(50))
+top_words = dict(nouns_counter.most_common(100))
 print(top_words)
 
+# import numpy as np
+#
+# y_pos = np.arange(len(top_words))
+# plt.figure(figsize=(12, 12))
+# plt.barh(y_pos, top_words.values())
+# plt.title('Word Count')
+# plt.yticks(y_pos, top_words.keys())
+# plt.show()
+
+##################################
+
+# from wordcloud import WordCloud
+#
+# wc = WordCloud(background_color='white', font_path=fontpath)
+# wc.generate_from_frequencies(top_words)
+#
+# figure = plt.figure(figsize=(12, 12))
+# ax = figure.add_subplot(1, 1, 1)
+# ax.axis('off')
+# ax.imshow(wc)
+# plt.show()
 
 
+#######################
+##!pip install squarify
+import squarify
+
+norm = mpl.colors.Normalize(vmin=min(top_words.values()),
+                            vmax=max(top_words.values()))
+colors = [mpl.cm.Blues(norm(value)) for value in top_words.values()]
+squarify.plot(label=top_words.keys(),
+              sizes=top_words.values(),
+              color=colors,
+              alpha=.7);
+plt.show()
