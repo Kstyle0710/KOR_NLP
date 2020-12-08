@@ -73,3 +73,33 @@ print(len(news_texts))
 
 #######여기까지가 데이터 전처리, 이후 Word2Vec 만들기 ########
 
+## Gensim을 이용한 Word2Vec
+## CBOW 방식 먼저
+
+from gensim.models import Word2Vec
+# model = Word2Vec(sentences=news_texts, window=3, size=100, min_count=5, workers=4, sg=0)
+## 윈도는 앞뒤로 단어 몇개를 볼 것인가? 워커스는 병렬처리 개수
+# result = model.wv.similarity('man', 'woman')
+# result = model.most_similar(positive=['soldiers'])
+# result = model.most_similar(positive=['man', 'company'], negative=['woman'])
+# print(result)
+
+## Skip-gram 방식
+model = Word2Vec(sentences=news_texts, window=3, size=100, min_count=5, workers=4, sg=1)  # 끝에 sg만 1로 바뀜
+# result = model.wv.similarity('man', 'woman')
+# result = model.most_similar(positive=['soldiers'])
+# result = model.most_similar(positive=['man', 'company'], negative=['woman'])
+# print(result)
+
+
+## 임베딩 벡터 시각화
+from gensim.models import KeyedVectors
+
+# model.wv.save_word2vec_format('./data/news_w2v')
+# 모델을 파일로 다운로드
+##!python -m gensim.scripts.word2vec2tensor -i ./data/news_w2v -o ./result/news_w2v
+# 다운받을 파일을 텐서, 메타데이터 파일로 변환
+## https://projector.tensorflow.org/
+# 이사이트로 가서 텐서와 메타데이터 로드후 비쥬얼~
+
+
