@@ -23,7 +23,7 @@ from sklearn.datasets import fetch_20newsgroups
 dataset = fetch_20newsgroups(shuffle=True, random_state=1,
                              remove=('headers', 'footers', 'quotes'))
 documents = dataset.data
-# print(len(documents))
+print(f"최초 데이터 개수 : {len(documents)}")
 # print(documents[5])
 
 ## 불필요한 특수문자 등 제거 필요 (데이터 전처리)
@@ -39,7 +39,7 @@ nltk.download('punkt')
 def clean_text(d):
     pattern = r'[^a-zA-Z\s]'  # 알파벳이 아닌 것들은 전부 제거
     text = re.sub(pattern, "", d)
-    return d
+    return text
 
 def clean_stopword(d):
     stop_words = stopwords.words('english')
@@ -51,7 +51,7 @@ def tokenize(d):
 import pandas as pd
 
 news_df = pd.DataFrame({'article':documents})
-print(len(news_df))
+print(f"데이터 프레임 변환후 데이터 개수 : {len(news_df)}")
 
 news_df.replace("", float("NaN"), inplace=True)
 news_df.dropna(inplace=True)
@@ -69,11 +69,11 @@ import numpy as np
 
 drop_news = [index for index, sentence in enumerate(tokenized_news) if len(sentence) <= 1]
 news_texts = np.delete(tokenized_news, drop_news, axis=0)
-print(len(news_texts))
+print(f"전처리후 데이터 개수 : {len(news_texts)}")
 
 #######여기까지가 데이터 전처리, 이후 Word2Vec 만들기 ########
 
-## Gensim을 이용한 Word2Vec
+### Gensim을 이용한 Word2Vec##############################
 ## CBOW 방식 먼저
 
 from gensim.models import Word2Vec
@@ -85,7 +85,7 @@ from gensim.models import Word2Vec
 # print(result)
 
 ## Skip-gram 방식
-model = Word2Vec(sentences=news_texts, window=3, size=100, min_count=5, workers=4, sg=1)  # 끝에 sg만 1로 바뀜
+# model = Word2Vec(sentences=news_texts, window=3, size=100, min_count=5, workers=4, sg=1)  # 끝에 sg만 1로 바뀜
 # result = model.wv.similarity('man', 'woman')
 # result = model.most_similar(positive=['soldiers'])
 # result = model.most_similar(positive=['man', 'company'], negative=['woman'])
