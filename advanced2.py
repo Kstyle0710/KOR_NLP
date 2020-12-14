@@ -5,8 +5,8 @@ from konlpy.tag import Mecab
 mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
 
 
-df = pd.read_excel('./data/data1.xlsx')
-target = df["작업행동"]
+df = pd.read_excel('./data/작업표준 목록_조선외.xlsx')
+target = df["표준서명"]
 
 targets =[]
 
@@ -33,5 +33,5 @@ result_df = pd.DataFrame(summary)
 result_df = result_df.T
 print(result_df.head(20))
 
-result_df.to_excel("./result/ko_nlp_1206.xlsx", encoding='utf-8-sig')
+result_df.to_excel("./result/ko_nlp_1214.xlsx", encoding='utf-8-sig')
 
