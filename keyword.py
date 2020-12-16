@@ -56,27 +56,27 @@ print(top_words)
 
 ##################################
 
-# from wordcloud import WordCloud
-#
-# wc = WordCloud(background_color='white', font_path=fontpath)
-# wc.generate_from_frequencies(top_words)
-#
-# figure = plt.figure(figsize=(12, 12))
-# ax = figure.add_subplot(1, 1, 1)
-# ax.axis('off')
-# ax.imshow(wc)
-# plt.show()
+from wordcloud import WordCloud
+
+wc = WordCloud(background_color='white', font_path=fontpath)
+wc.generate_from_frequencies(top_words)
+
+figure = plt.figure(figsize=(12, 12))
+ax = figure.add_subplot(1, 1, 1)
+ax.axis('off')
+ax.imshow(wc)
+plt.show()
 
 
 #######################
 ##!pip install squarify
-import squarify
-
-norm = mpl.colors.Normalize(vmin=min(top_words.values()),
-                            vmax=max(top_words.values()))
-colors = [mpl.cm.Blues(norm(value)) for value in top_words.values()]
-squarify.plot(label=top_words.keys(),
-              sizes=top_words.values(),
-              color=colors,
-              alpha=.7);
-plt.show()
+# import squarify
+#
+# norm = mpl.colors.Normalize(vmin=min(top_words.values()),
+#                             vmax=max(top_words.values()))
+# colors = [mpl.cm.Blues(norm(value)) for value in top_words.values()]
+# squarify.plot(label=top_words.keys(),
+#               sizes=top_words.values(),
+#               color=colors,
+#               alpha=.7);
+# plt.show()

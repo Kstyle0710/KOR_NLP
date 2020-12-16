@@ -5,7 +5,7 @@ DTM Document Term Matrix  문서에 등장하는 여러 단어들의 빈도를 �
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 
-corpus = ['Think like a man of action and act like man of thought',
+corpus = ['Thin k like a man of action and act like man of thought',
           "Try not to become a man of success but rather try to become a man of value",
           "Give me liberty, or give me death"]
 
