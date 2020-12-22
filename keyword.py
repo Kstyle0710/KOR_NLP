@@ -22,8 +22,8 @@ plt.rc('font', family="NanumGothic")
 mpl.font_manager._rebuild()
 
 
-df = pd.read_excel('./data/data1.xlsx')
-target = df["작업행동"]
+df = pd.read_excel('./result/mother_file.xlsx')
+target = df["keyword"]
 
 targets =[]
 results = []
