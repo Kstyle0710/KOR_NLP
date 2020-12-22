@@ -7,3 +7,5 @@ result/
 venv/
 
 font/
+
+wordcloud/
