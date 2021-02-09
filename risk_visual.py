@@ -94,7 +94,7 @@ def update_graph(n_clicks, dept, y_axis):
     dff = gdf[gdf["부서"] == dept]
     barchart=px.bar(
             data_frame=dff,
-            x= dff['대구분'],
+            x= dff['WORK_STAND_NM'],
             y= y_axis,
             title="Risk in Working Standard",
             color='중구분',
